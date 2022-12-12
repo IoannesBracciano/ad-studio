@@ -1,9 +1,16 @@
 import './ProductListing.css';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ProductListing({ product }) {
+    const navigate = useNavigate();
+
+    const handleClick = useCallback((mouseEvent) => {
+        navigate(`products/${product.id}`);
+    }, [navigate, product.id]);
+
     return (
-        <div className="product-listing">
+        <div className="product-listing" onClick={handleClick}>
             <div className="product-image">
                 <img
                     alt="Product listing"
